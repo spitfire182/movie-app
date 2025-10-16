@@ -14,8 +14,12 @@ export default function MovieList({ movies }: MovieListProps) {
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
 
   return (
-    <>
-      <ul>
+    <div>
+      <h2 className="text-l font-bold mb-6 text-left">
+        Most popular
+      </h2>
+
+      <ul className="flex flex-col gap-2">
         {movies.map((movie) => (
           <MovieListItem
             key={movie.id}
@@ -25,9 +29,12 @@ export default function MovieList({ movies }: MovieListProps) {
         ))}
       </ul>
 
-      <Modal isOpen={!!selectedMovieId} onClose={() => setSelectedMovieId(null)}>
+      <Modal
+        isOpen={!!selectedMovieId}
+        onClose={() => setSelectedMovieId(null)}
+      >
         {selectedMovieId && <MovieDetails movieId={selectedMovieId} />}
       </Modal>
-    </>
+    </div>
   );
 }
