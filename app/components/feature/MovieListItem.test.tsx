@@ -8,11 +8,21 @@ jest.mock("@/services/movieService");
 const mockGetImageUrl = getImageUrl as jest.Mock;
 
 // Mock next/image to prevent errors
+
+type MockImageProps = {
+  src: string;
+  alt: string; // The 'alt' prop is now explicitly required by the type
+  width: number;
+  height: number;
+  // Allows for other props like layout, className, etc.
+  [key: string]: unknown;
+};
+
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img {...props} />;
+  default: (props: MockImageProps) => {
+    const { alt, ...rest } = props;
+    return <img alt={alt} {...rest} data-testid="next-image-mock" />;
   },
 }));
 

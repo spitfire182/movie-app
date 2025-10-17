@@ -26,7 +26,7 @@ export default function MovieDetailsView({ movieId }: MovieDetailsProps) {
         const data = await getMovieDetails(movieId);
         setMovie(data);
       } catch (err) {
-        setError("Failed to load movie details.");
+        setError(`Failed to load movie details. Error message: ${err}`);
       } finally {
         setLoading(false);
       }
