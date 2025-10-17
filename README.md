@@ -61,6 +61,7 @@ Given more time, here are some improvements I would implement to make this a pro
     -   Add **CSS transitions** to the modal for a smoother open/close animation.
     -   Implement **error boundaries** to gracefully handle any rendering errors in components.
     -   Add **search and filtering** to find movies by title and filter by genre or date.
+    -   Fix **cumulative layout shift** caused by implementing loading state which shows up very briefly in the modal.
     -   Add better **error handling** currently, the app has basic error handling. A more robust solution would involve using Next.js error.tsx files to show user-friendly error messages.
 -   **Accessibility**: I would enhance the `Modal` component's accessibility by adding **focus trapping**, ensuring the user cannot tab outside the modal, and making it fully compliant with WAI-ARIA guidelines.
 -   **Pagination**: The current app only shows the first page of results. I would add **infinite scrolling** to seamlessly load more movies as the user scrolls.
