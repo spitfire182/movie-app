@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TMDb Popular Movies
+
+This is a Next.js application that displays a list of popular movies from The Movie Database (TMDb) API and allows users to view details for a selected movie in a modal.
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a copy of the project up and running on your local machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
+
+- Node.js (v18 or later)
+- npm or yarn
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone [https://github.com/your-username/tmdb-movie-app.git](https://github.com/your-username/tmdb-movie-app.git)
+    cd tmdb-movie-app
+    ```
+
+2.  Install NPM packages:
+    ```bash
+    npm install
+    ```
+
+3.  Set up your environment variables. Create a file named `.env.local` in the root of the project and add your TMDb API key:
+    ```
+    NEXT_PUBLIC_TMDB_API_KEY="your_api_key_here"
+    ```
+
+4.  Run the development server:
+    ```bash
+    npm run dev
+    ```
+
+5.  Run tests:
+    ```bash
+    npm test
+    ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+##  Technical Decisions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-   **Framework**: **Next.js** was chosen to leverage modern React features like Server Components, which handle the initial data fetching for improved performance and SEO.
+-   **Styling**: **Tailwind CSS** was used for rapid, utility-first styling and to build a responsive, mobile-first design.
+-   **TypeScript**: The project is written in TypeScript to ensure type safety, reduce runtime errors, and improve code maintainability.
+-   **Component Structure**: The application is broken down into reusable UI components (`Modal`) and feature-specific components (`MovieList`, `MovieDetails`). This follows the principle of separation of concerns.
+-   **API Abstraction**: All TMDb API calls are centralized in a `services/movieService.ts` file. This decouples data fetching logic from the UI, making the code cleaner and easier to test.
+-   **Reusable functions**: All reusable functions are placed in the `utils` directory. This follows the DRY principle and it's reusable and easy to test. Good example is `date.ts` to handle operations on dates.
+-   **Image optimisation**: Built-in <Image> component automatically optimizes images for different devices, improving performance.
 
-## Learn More
+## Potential Improvements
 
-To learn more about Next.js, take a look at the following resources:
+Given more time, here are some improvements I would implement to make this a production-ready application:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-   **State Management**: For an app with more complex state, this would provide caching, automatic re-fetching, and optimistic updates, leading to a much better user experience.
+-   **UX & UI**:
+    -   Implement **skeleton loaders** on the initial page load to provide better visual feedback.
+    -   Add **CSS transitions** to the modal for a smoother open/close animation.
+    -   Implement **error boundaries** to gracefully handle any rendering errors in components.
+    -   Add **search and filtering** to find movies by title and filter by genre or date.
+    -   Add better **error handling** currently, the app has basic error handling. A more robust solution would involve using Next.js error.tsx files to show user-friendly error messages.
+-   **Accessibility**: I would enhance the `Modal` component's accessibility by adding **focus trapping**, ensuring the user cannot tab outside the modal, and making it fully compliant with WAI-ARIA guidelines.
+-   **Pagination**: The current app only shows the first page of results. I would add **infinite scrolling** to seamlessly load more movies as the user scrolls.
+-   **Testing**: The current test suite includes a single unit test as required. A production application would have a comprehensive suite including **integration tests** (e.g., testing the full flow of clicking a movie to open the modal) and **end-to-end tests** using a tool like Cypress or Playwright.
+-   **Ease to work with**: I would extract logic to custom hooks to have clear separation of bussiness logic and component structure that would improve code readability and made it less prone to user introduced bugs. 

@@ -26,7 +26,6 @@ export default function MovieListItem({ movie, onClick }: MovieListItemProps) {
           className="rounded-xl object-cover"
         />
       ) : (
-        // Placeholder for movies without a poster
         <div>No Image</div>
       )}
       <div className="flex flex-col gap-6 justify-center">
